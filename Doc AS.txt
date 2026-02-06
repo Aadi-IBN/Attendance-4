@@ -1,0 +1,478 @@
+ATTENDANCE + PAYROLL + LEAVE MANAGEMENT SYSTEM
+FINAL & LOCKED SYSTEM SPECIFICATION
+
+(SINGLE SOURCE OF TRUTH – PRODUCTION READY)
+
+1. SYSTEM PURPOSE & PHILOSOPHY
+
+This system is a real-world, company-grade Attendance, Leave, Payroll
+and HR control system designed for practical daily operations.
+
+Core Philosophy (UPDATED & FINAL)
+
+Employees are allowed to perform required actions
+
+Every action is system-verified and admin-controlled
+
+Attendance result is system-calculated, not manually edited
+
+Salary data is protected and auditable
+
+Proof (photo, location, logs) is mandatory for trust
+
+System favors real-world work patterns (office, site visit, WFH)
+
+2. USER ROLES & POSITIONS
+Roles
+
+Admin
+
+Employee
+
+Intern
+
+Positions & Payment
+Position	Payment Type
+Employee	Salary
+Intern	Stipend (Hourly / Fixed – Admin selectable)
+3. ADMIN ROLE & POWERS
+
+Admin has absolute authority over:
+
+Employees
+
+Attendance visibility
+
+Leave approval
+
+Payroll & incentives
+
+Appraisal
+
+Expenses
+
+Reports
+
+Audit logs
+
+System rules
+
+Admin CAN:
+
+Add / edit / disable users
+
+Approve or reject leave
+
+View attendance (read-only)
+
+Generate payroll
+
+Edit actual deposited salary
+
+Apply appraisal
+
+Add incentives
+
+Approve expenses
+
+View all reports & logs
+
+Admin CANNOT:
+
+Edit attendance manually
+
+Delete audit logs
+
+Modify historical salary calculations
+
+4. EMPLOYEE ROLE
+
+Employee CAN:
+
+Punch In / Punch Out
+
+Select attendance slot
+
+Switch to site visit
+
+Apply leave (past / present / future)
+
+Add office expenses
+
+View own attendance & reports
+
+View company contact directory
+
+Employee CANNOT:
+
+Edit attendance
+
+Fake date / time
+
+Upload gallery photo
+
+View salary or payroll data
+
+Change system rules
+
+5. LOGIN & SESSION SECURITY
+
+Login via Employee ID + PIN
+
+PIN stored in hashed format
+
+Multiple device login allowed
+
+Session security exists only for authentication
+
+Attendance NOT device-locked
+
+6. ATTENDANCE SYSTEM – GENERAL RULES
+Availability
+
+Attendance system open 24×7
+
+Works on:
+
+Working days
+
+Saturdays
+
+Sundays
+
+Holidays
+
+Mandatory Proof (VERY IMPORTANT)
+
+For every manual Punch In & Punch Out:
+
+📸 Live camera photo mandatory
+
+📍 Location capture mandatory
+
+Gallery upload ❌ disabled
+
+7. ATTENDANCE SLOT SELECTION (MANDATORY)
+
+At Punch In, user must select one slot:
+
+Office
+
+WFH
+
+Site Visit
+
+Slot selection mandatory, warna Punch In blocked.
+
+8. LOCATION (GEOFENCE) RULES – FINAL
+Office Slot
+
+Office geofence applied
+
+Punch allowed only inside office radius
+
+Outside radius → Punch rejected
+
+WFH Slot
+
+No geofence restriction
+
+Location captured only for record
+
+Site Visit Slot
+
+No geofence restriction
+
+Location + photo mandatory for proof
+
+9. OFFICE & WFH ATTENDANCE LOGIC
+Office Timing
+
+Punch In: 10:00 AM
+
+Punch Out: 6:00 PM
+
+Late Rule (Recovery Based)
+
+10:00 – 10:15 → Late
+
+Late employee:
+
+Must work till 7:00 PM
+
+Then only Full Day allowed
+
+Working Hour Based Day Count
+Working Hours	Day Count
+< 4 hours	0 Day
+4 – < 8 hours	Half Day
+≥ 8 hours	Full Day
+10. AUTO PUNCH-OUT RULE (FINAL)
+Condition
+
+Punch In done
+
+Punch Out NOT done
+
+System Action
+
+Auto Punch Out at 11:59 PM
+
+Record message:
+
+“Punch out automatically done by system. User did not punch out.”
+
+Attendance Result
+
+Normal Office / WFH → Day Count = 0
+
+Site Visit triggered → Day Count = Full Day
+
+📌 Manual Punch Out is mandatory for salary
+📌 Site Visit is the only exception
+
+11. SITE VISIT SYSTEM (FINAL)
+Case 1: Direct Site Visit
+
+Slot = Site Visit
+
+Punch In + Punch Out required
+
+Photo + location mandatory
+
+Day Count = Full Day
+
+Case 2: Office → Site Visit Shift
+Button (visible after Office Punch In)
+
+Button text:
+👉 I am going for Site Visit
+
+On Button Click
+
+Slot changes: Office → Site Visit
+
+Time + photo + location captured
+
+Flag stored for audit
+
+Final Site Visit Rules
+
+Half Day ❌
+
+Hour calculation ❌
+
+Always Full Day
+
+Punch Out mandatory (manual preferred)
+
+12. ATTENDANCE DECISION PRIORITY (LOCKED)
+
+System decides attendance strictly in this order:
+
+Auto Punch-Out (No Site Visit) → 0 Day
+
+Site Visit → Full Day
+
+Office / WFH Hour Logic
+
+Approved Leave
+
+Holiday
+
+13. LEAVE MANAGEMENT (EMPLOYEE ONLY)
+Leave Types
+
+Sick Leave
+
+Casual Leave
+
+Allocation
+
+Every 3 months:
+
+2 Sick
+
+2 Casual
+
+Rules
+
+Leave can be applied:
+
+Same day
+
+Past date
+
+Future date
+
+Leave valid only after admin approval
+
+Approved leave:
+
+Salary NOT cut
+
+Once leave approved for a date:
+
+Attendance punch blocked
+
+Message shown:
+
+“Today you are on approved leave”
+
+14. HOLIDAYS
+
+Attendance allowed on holidays
+
+If employee works:
+
+Normal day salary counted
+
+No unpaid holiday logic
+
+15. SALARY SYSTEM (EMPLOYEE)
+
+Salary month = 30 days fixed
+
+Per Day Salary = Monthly Salary ÷ 30
+
+Final Salary Includes:
+
+Attendance days
+
+Approved leaves
+
+Incentives
+
+Approved expenses
+
+Admin Control
+
+Actual deposited salary editable
+
+Used for reporting only
+
+16. INTERN STIPEND SYSTEM
+
+Admin selectable mode:
+
+Hourly based
+
+Fixed monthly
+
+Hourly mode:
+
+Daily hours tracked
+
+Monthly total hours calculated
+
+Fixed mode:
+
+Attendance for tracking only
+
+17. APPRAISAL & INCENTIVES
+Appraisal
+
+Applies to salary
+
+Permanent
+
+Creates new salary base
+
+Incentives
+
+One-time payment
+
+Not part of salary structure
+
+Admin controlled
+
+18. EXPENSE MANAGEMENT
+Employee
+
+Add expense:
+
+Amount
+
+Description
+
+Date
+
+Payment screenshot (optional)
+
+Flow
+
+Employee submits expense
+
+Admin approves
+
+Approved expense added to salary
+
+(No month-lock restriction for expenses)
+
+19. REPORTS
+Employee
+
+Monthly attendance report
+
+Office / WFH / Site Visit breakup
+
+Admin
+
+Daily & monthly attendance
+
+Leave reports
+
+Salary & incentive reports
+
+Intern hour reports
+
+20. COMPANY CONTACT DIRECTORY
+Admin
+
+Add / edit contacts:
+
+Name
+
+Role
+
+Phone number
+
+Employee
+
+Read-only
+
+Click to call
+
+21. AUDIT LOGS
+
+Every action logged:
+
+Punch In / Out
+
+Auto punch-out
+
+Site visit switch
+
+Leave apply / approve
+
+Expense approval
+
+Payroll actions
+
+Logs are:
+
+Read-only
+
+Never deletable
+
+✅ FINAL STATUS
+
+All rules final & conflict-free
+
+Real-world ready
+
+Developer-safe
+
+No assumptions
+
+No contradictions
